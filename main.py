@@ -112,6 +112,22 @@ class ProfileSaveHandler(webapp2.RequestHandler):
                 values['successmsg'] = 'Everything worked out fine'    
             render_template(self, 'profileedit.html', values)
 
+class ProfileEditHandler(webapp2.RequestHandler):
+    def get(self):
+        if not get_user_email():
+            self.redirect('/')
+        else:
+            values = get_template_parameters()
+            profile = socialdata.get_user_profile(get_user_email())
+            if profile:
+                values['name'] = profile.name
+                values['age'] = profile.age
+                values['description'] = profile.description
+                values['nationality'] = profile.nationality
+                values['location'] = profile.location
+                values['language'] = profile.language
+            render_template(self, 'profileedit.html', values)
+
 
 app = webapp2.WSGIApplication([         #Anything that isn't specified goes to the main page
     ("/home", HomeHandler),
