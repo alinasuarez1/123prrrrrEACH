@@ -21,6 +21,9 @@ def get_template_parameters():
     values = {}
     if get_user_email():
         values['logout_url'] = users.create_logout_url('/')
+        values['profileedit_url'] = '/profileedit'
+        values['upload_url'] = '/upload'
+        values['home_url'] = '/home'
     else:
         values['login_url'] = users.create_login_url('/')
     return values
@@ -33,9 +36,31 @@ class MainHandler(webapp2.RequestHandler):          #Request handlers accepts a 
             profile = socialdata.get_user_profile(get_user_email())
             if profile:
                 values['name'] = profile.name
-        render_template(self, 'loginpage.html', values)     #calling render_template function
+        render_template(self, 'homepage.html', values)     #calling render_template function
+        self.redirect('/home')
+        
+
+class HomeHandler(webapp2.RequestHandler):
+    def get(self):
+        values = get_template_parameters()
+        render_template(self, 'homepage.html', values)
+
+class ProfileEditHandler(webapp2.RequestHandler):
+    def get(self):
+        values = get_template_parameters()
+        render_template(self, 'profileedit.html', values)
+
+class UploadHandler(webapp2.RequestHandler):
+    def get(self):
+        values = get_template_parameters()
+        render_template(self, 'upload.html', values)
+
+
 
 
 app = webapp2.WSGIApplication([         #Anything that isn't specified goes to the main page
+    ("/home", HomeHandler),
+    ('/profileedit', ProfileEditHandler),
+    ('/upload', UploadHandler),
     ('.*', MainHandler),
 ])

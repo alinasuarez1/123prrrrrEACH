@@ -11,7 +11,13 @@
             {% if login_url %}      <!--If login url is true-->
             <a href="{{login_url}}"><button type="button">Login</button></a>
             {% else %}
+            <a href="{{home_url}}"><button type="button" id="homebtn">Home</button></a>
+            <a href="{{profileedit_url}}"><button type="button" id="profileeditbtn">Edit Profile</button></a>
+            <a href="{{upload_url}}"><button type="button" id="uploadbtn">Upload</button></a>
             <a href="{{logout_url}}"><button type="button" id="logoutbtn">Logout</button></a>
+                <div>
+                    
+                </div>
             {% endif %}
         </div>
 

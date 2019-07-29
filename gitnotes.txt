@@ -4,4 +4,7 @@
         git status: checks which files were updated
         git commit -m "message" : Commits files that were saved -->
         git push : Pushes the files to github. Needs to specify from which branch to which branch.
-        git pull
+        git pull: Gets files from github
+        git Reset HEAD : will reset the branch to the original branch
+        git pull --rebase : going back and trying to work on your changes with other changes. Goes back and changes dff thingss
+        
