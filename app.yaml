@@ -1,0 +1,16 @@
+#app.yaml
+runtime: python27
+api_version: 1
+threadsafe: true
+
+
+handlers:
+- url: /static          #Now the user can access static. Every time i need to open a new directory I need to map it.
+  static_dir: static
+- url: /.*
+  script: main.app
+  
+
+libraries:
+- name: jinja2
+  version: latest

@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <!-- <link rel="stylesheet" href="/static/style.css"> -->
+        wghenever any changes, add, commit, push.
+        git add . : save all files
+        git status: checks which files were updated
+        
+    </head>
+    <body>
+        <div id="topmenu">
+            <br>
+            <!-- <a href="/"><button type="button" id= "homebtn" ></button></a> -->
+            {% if login_url %}      <!--If login url is true-->
+            <a href="{{login_url}}"><button type="button">Login</button></a>
+            {% else %}
+            <a href="{{logout_url}}"><button type="button" id="logoutbtn">Logout</button></a>
+            {% endif %}
+        </div>
+
+        <!-- {%if successmsg%}
+        <div id="successmsg">{{successmsg}}</div>
+        {% endif %}
+        {% if errormsg %}
+        <div id="errormsg">{{errormsg|linebreaks}}</div>
+        {% endif %} -->
+        {% block content %} {% endblock %}
+    </body>
+</html>
