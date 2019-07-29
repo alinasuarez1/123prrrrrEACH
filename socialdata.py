@@ -1,12 +1,16 @@
 from socialmodels import UserProfile
 
-def save_profile(email, name, description):
+def save_profile(email, name, age, description, nationality, location, language):
     p = get_user_profile(email)
     if p:
         p.name = name
+        p.age = age
         p.description = description
+        p.nationality = nationality
+        p.location = location
+        p.language = language
     else:
-        p = UserProfile(email = email, name= name, description=description)
+        p = UserProfile(email = email, name= name, description=description, nationality=nationality, location=location, language=language )
     p.put()       #saves it in the database
 
 def get_user_profile(email):

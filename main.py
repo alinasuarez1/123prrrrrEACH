@@ -65,14 +65,58 @@ class FeedHandler(webapp2.RequestHandler):
         values = get_template_parameters()
         render_template(self, 'feed.html', values)
 
+class ProfileViewHandler(webapp2.RequestHandler):
+    def get(self):
+        values = get_template_parameters()
+        render_template(self, 'feed.html', values)
+        
+class ProfileSaveHandler(webapp2.RequestHandler):
+    def post(self):
+        email = get_user_email()
+        if not email:
+            self.redirect('/')
+        else:
+            error_text = ''
+            name = self.request.get('name')
+            age = self.request.get('age')
+            description = self.request.get('description')
+            nationality = self.request.get('nationality')
+            location = self.request.get('location')
+            language = self.request.get('language')
 
+            if len(name) < 2:
+                error_text += 'name should be at least two characters. \n'
+            if len(name) > 20:
+                error_text += 'name should be no more than 20 characters. \n'
+            if len(name.split()) > 1:
+                error_text += 'name should not have whitespace. \n'
+            if len(description) > 4000:
+                error_text += 'Description should be less than 4000 characters. \n'
 
+            for word in description.split():
+                if len(word) > 50:
+                    error_text += 'Description contains words that are too long.\n'
+                    break
+            values = get_template_parameters()
+            values['name'] = name
+            values['age'] = age
+            values['description'] = description
+            values['nationality'] = nationality
+            values['location'] = location
+            values['language'] = language
 
+            if error_text:
+                values['errormsg'] = error_text
+            else:
+                socialdata.save_profile(email, name, age, description, nationality, location, language) 
+                values['successmsg'] = 'Everything worked out fine'    
+            render_template(self, 'profileedit.html', values)
 
 
 app = webapp2.WSGIApplication([         #Anything that isn't specified goes to the main page
     ("/home", HomeHandler),
     ('/profileedit', ProfileEditHandler),
+    ('/profile-save', ProfileSaveHandler),
     ('/upload', UploadHandler),
     ('/profile', ProfileHandler),
     ('/feed', FeedHandler),
