@@ -36,11 +36,11 @@ class MainHandler(webapp2.RequestHandler):          #Request handlers accepts a 
             profile = socialdata.get_user_profile(get_user_email())
             if profile:
                 values['name'] = profile.name
-        render_template(self, 'homepage.html', values)     #calling render_template function
+        render_template(self, 'homepage.html', values)    #calling render_template function
         self.redirect('/home')
         
 
-class HomeHandler(webapp2.RequestHandler):
+class HomeHandler(webapp2.RequestHandler):  # DONT TOUCH
     def get(self):
         values = get_template_parameters()
         render_template(self, 'homepage.html', values)
@@ -55,6 +55,18 @@ class UploadHandler(webapp2.RequestHandler):
         values = get_template_parameters()
         render_template(self, 'upload.html', values)
 
+class ProfileHandler(webapp2.RequestHandler):
+    def get(self):
+        values = get_template_parameters()
+        render_template(self, 'profile.html', values)
+
+class FeedHandler(webapp2.RequestHandler):
+    def get(self):
+        values = get_template_parameters()
+        render_template(self, 'feed.html', values)
+
+
+
 
 
 
@@ -62,5 +74,7 @@ app = webapp2.WSGIApplication([         #Anything that isn't specified goes to t
     ("/home", HomeHandler),
     ('/profileedit', ProfileEditHandler),
     ('/upload', UploadHandler),
+    ('/profile', ProfileHandler),
+    ('/feed', FeedHandler),
     ('.*', MainHandler),
 ])
