@@ -30,19 +30,18 @@ body{
     position: relative;
     left: 0%;
     font-size: 20;
-    border-radius: 2px;
+    border-radius: 1px;
     height: 120%;
-    color: white;
+    color: rgba(255, 255, 255, 1);
     transition: all .3s ease;
     background-color: rgba(176, 204, 228, 0.559);
-    border: 2px solid rgba(128, 128, 128, 0.559);;
+    border: 2px solid rgba(128, 128, 128, 0.559);
 }
 
 #topmenu button:hover{
     cursor: pointer;
-    border-radius: 5px;
     color: white;
-    background-color: rgba(240, 215, 118, 0.779);
+    background-color: rgb(176, 204, 228);
 }
 
 #profileFrame{
@@ -55,11 +54,76 @@ body{
     background-color: white;
 }
 
+#profileForm{
+    font-size: 24px;
+    background-color:rgb(243, 243, 245);
+    width: 70%;
+    height: auto;
+    position: absolute;
+    left: 15%;
+    top: 25%;
+}
+
+#logo{
+    z-index: 2;
+    position: absolute;
+    width: 20%;
+    left: 40%;
+    top: 3%;
+}
+
 #feedFrame{
     width: 70%;
     height: 75%;
     position: absolute;
     top: 25%;
     left: 15%;
-    background-color: white;
+    background-color:rgb(243, 243, 245);
+}
+
+
+
+
+
+#why{
+  width: 40%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+#profileForm input[type=text], input[type=textarea], select {
+  width: 40%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+#profileForm input[type=submit] {
+  width: 20%;
+  background-color: rgba(16, 16, 105, 0.779);
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 22;
+  transition: all .3s ease;
+}
+
+#profileForm input[type=submit]:hover {
+  background-color:  rgba(176, 204, 228, 1);
+}
+
+#profileForm div {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
 }
