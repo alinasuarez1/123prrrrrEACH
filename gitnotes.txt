@@ -1,0 +1,7 @@
+        <!-- whenever any changes, add, commit, push.
+        git add . : save all files
+        git add main.py socialdata.py file3.html ...: Selective file save
+        git status: checks which files were updated
+        git commit -m "message" : Commits files that were saved -->
+        git push : Pushes the files to github. Needs to specify from which branch to which branch.
+        git pull
