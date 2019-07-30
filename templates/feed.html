@@ -10,9 +10,11 @@
     <body>
         <br>
         <h1>Main Page</h1>
+        {% for profile in profiles %}
+        <a href="/profileview">{{profile.firstname}}</a> - updated {{profile.last_update}}
+        <br><br>
+        {% endfor %}
 
-        <div>
-        </div>
 
     </body>
 </body>

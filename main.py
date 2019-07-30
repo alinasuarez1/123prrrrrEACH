@@ -35,7 +35,7 @@ class MainHandler(webapp2.RequestHandler):          #Request handlers accepts a 
         if get_user_email():
             profile = socialdata.get_user_profile(get_user_email())
             if profile:
-                values['name'] = profile.name
+                values['firstname'] = profile.firstname
         render_template(self, 'homepage.html', values)    #calling render_template function
         self.redirect('/home')
         
@@ -45,7 +45,7 @@ class HomeHandler(webapp2.RequestHandler):  # DONT TOUCH
         values = get_template_parameters()
         profile = socialdata.get_user_profile(get_user_email())
         if profile:
-            values['name'] = profile.name
+            values['firstname'] = profile.firstname
             values['nickname'] = profile.nickname
         render_template(self, 'homepage.html', values)
 
@@ -59,7 +59,7 @@ class UploadHandler(webapp2.RequestHandler):
         values = get_template_parameters()
         profile = socialdata.get_user_profile(get_user_email())
         if profile:
-            values['name'] = profile.name
+            values['firstname'] = profile.firstname
             values['nickname'] = profile.nickname
         render_template(self, 'upload.html', values)
 
@@ -68,18 +68,26 @@ class ProfileHandler(webapp2.RequestHandler):
         profile = socialdata.get_user_profile(get_user_email())
         values = get_template_parameters()
         render_template(self, 'profile.html', values)
-        values['name'] = profile.name
+        values['firstname'] = profile.firstname
 
 
 class FeedHandler(webapp2.RequestHandler):
     def get(self):
+        profiles = socialdata.get_recent_profiles()
         values = get_template_parameters()
-        render_template(self, 'feed.html', values)
+        values['profiles'] = profiles
+        render_template(self, 'feed.html', values) 
 
 class ProfileViewHandler(webapp2.RequestHandler):
     def get(self):
+        profile = socialdata.get_profile_by_name(profile.firstname)
         values = get_template_parameters()
-        render_template(self, 'feed.html', values)
+        values['firstname'] = 'Unknown'
+        values['description'] = 'Profile does not exist'
+        if profile: 
+            values['firstname'] = profile.firstname
+            values['description'] = profile.description
+        render_template(self, 'profileview.html', values)
         
 class ProfileSaveHandler(webapp2.RequestHandler):
     def post(self):
@@ -88,41 +96,43 @@ class ProfileSaveHandler(webapp2.RequestHandler):
             self.redirect('/')
         else:
             error_text = ''
-            name = self.request.get('name')
+            firstname = self.request.get('firstname')
+            lastname = self.request.get('lastname')
             age = self.request.get('age')
             description = self.request.get('description')
             nationality = self.request.get('nationality')
             location = self.request.get('location')
-            nickname = self.request.get('name')
+            nickname = self.request.get('nickname')
             language = self.request.get('language')
 
-            if len(name) < 2:
-                error_text += 'name should be at least two characters. \n'
-            if len(name) > 20:
-                error_text += 'name should be no more than 20 characters. \n'
-            if len(name.split()) > 1:
-                error_text += 'name should not have whitespace. \n'
-            if len(description) > 4000:
-                error_text += 'Description should be less than 4000 characters. \n'
+            # if len(name) < 2:
+            #     error_text += 'name should be at least two characters. \n'
+            # if len(name) > 20:
+            #     error_text += 'name should be no more than 20 characters. \n'
+            # if len(name.split()) > 1:
+            #     error_text += 'name should not have whitespace. \n'
+            # if len(description) > 4000:
+            #     error_text += 'Description should be less than 4000 characters. \n'
 
-            for word in description.split():
-                if len(word) > 50:
-                    error_text += 'Description contains words that are too long.\n'
-                    break
+            # for word in description.split():
+            #     if len(word) > 50:
+            #         error_text += 'Description contains words that are too long.\n'
+            #         break
             values = get_template_parameters()
-            values['name'] = name
+            values['firstname'] = firstname
+            values['lastname'] = lastname
             values['age'] = age
             values['description'] = description
             values['nationality'] = nationality
             values['location'] = location
             values['language'] = language
-            varname = name[:9]
+            varname = firstname[:9]
             values['nickname'] = varname
             
             if error_text:
                 values['errormsg'] = error_text
             else:
-                socialdata.save_profile(email, name, age, description, nationality, location, language, varname) 
+                socialdata.save_profile(email, firstname, lastname, age, description, nationality, location, language, varname) 
                 values['successmsg'] = 'Everything worked out fine'    
             render_template(self, 'profileedit.html', values)
 
@@ -134,7 +144,8 @@ class ProfileEditHandler(webapp2.RequestHandler):
             values = get_template_parameters()
             profile = socialdata.get_user_profile(get_user_email())
             if profile:
-                values['name'] = profile.name
+                values['firstname'] = profile.firstname
+                values['lastname'] = profile.lastname
                 values['nickname'] = profile.nickname
                 values['age'] = profile.age
                 values['description'] = profile.description
@@ -144,10 +155,12 @@ class ProfileEditHandler(webapp2.RequestHandler):
             render_template(self, 'profileedit.html', values)
 
 
+
 app = webapp2.WSGIApplication([         #Anything that isn't specified goes to the main page
     ("/home", HomeHandler),
     ('/profileedit', ProfileEditHandler),
     ('/profile-save', ProfileSaveHandler),
+    ('/profileview', ProfileViewHandler),
     ('/upload', UploadHandler),
     ('/profile', ProfileHandler),
     ('/feed', FeedHandler),

@@ -1,7 +1,8 @@
 from google.appengine.ext import ndb
 
 class UserProfile(ndb.Model):
-    name = ndb.StringProperty()
+    firstname = ndb.StringProperty()
+    lastname = ndb.StringProperty()
     age = ndb.StringProperty()
     nickname = ndb.StringProperty()
     email = ndb.StringProperty()
