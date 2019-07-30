@@ -1,7 +1,9 @@
 {% extends "_base.html" %}
 {% block content %}
-hi, this is the profile edit page
 <center><div id="profileForm">
+    <br>
+    <h1>Profile Edit</h1>
+    <br>
     <form method="post" action="/profile-save">
     name: <br>
     <input type="text" name="name" value={{name}}><br>

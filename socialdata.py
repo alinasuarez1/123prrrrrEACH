@@ -1,6 +1,6 @@
 from socialmodels import UserProfile
 
-def save_profile(email, name, age, description, nationality, location, language):
+def save_profile(email, name, age, description, nationality, location, language, nickname):
     p = get_user_profile(email)
     if p:
         p.name = name
@@ -9,8 +9,9 @@ def save_profile(email, name, age, description, nationality, location, language)
         p.nationality = nationality
         p.location = location
         p.language = language
+        p.nickname = nickname
     else:
-        p = UserProfile(email = email, name= name, description=description, nationality=nationality, location=location, language=language )
+        p = UserProfile(email = email, name= name, description=description, nationality=nationality, location=location, language=language, nickname=nickname )
     p.put()       #saves it in the database
 
 def get_user_profile(email):

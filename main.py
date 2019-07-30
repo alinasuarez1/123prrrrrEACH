@@ -43,6 +43,10 @@ class MainHandler(webapp2.RequestHandler):          #Request handlers accepts a 
 class HomeHandler(webapp2.RequestHandler):  # DONT TOUCH
     def get(self):
         values = get_template_parameters()
+        profile = socialdata.get_user_profile(get_user_email())
+        if profile:
+            values['name'] = profile.name
+            values['nickname'] = profile.nickname
         render_template(self, 'homepage.html', values)
 
 class ProfileEditHandler(webapp2.RequestHandler):
@@ -53,12 +57,19 @@ class ProfileEditHandler(webapp2.RequestHandler):
 class UploadHandler(webapp2.RequestHandler):
     def get(self):
         values = get_template_parameters()
+        profile = socialdata.get_user_profile(get_user_email())
+        if profile:
+            values['name'] = profile.name
+            values['nickname'] = profile.nickname
         render_template(self, 'upload.html', values)
 
 class ProfileHandler(webapp2.RequestHandler):
     def get(self):
+        profile = socialdata.get_user_profile(get_user_email())
         values = get_template_parameters()
         render_template(self, 'profile.html', values)
+        values['name'] = profile.name
+
 
 class FeedHandler(webapp2.RequestHandler):
     def get(self):
@@ -82,6 +93,7 @@ class ProfileSaveHandler(webapp2.RequestHandler):
             description = self.request.get('description')
             nationality = self.request.get('nationality')
             location = self.request.get('location')
+            nickname = self.request.get('name')
             language = self.request.get('language')
 
             if len(name) < 2:
@@ -104,11 +116,13 @@ class ProfileSaveHandler(webapp2.RequestHandler):
             values['nationality'] = nationality
             values['location'] = location
             values['language'] = language
-
+            varname = name[:9]
+            values['nickname'] = varname
+            
             if error_text:
                 values['errormsg'] = error_text
             else:
-                socialdata.save_profile(email, name, age, description, nationality, location, language) 
+                socialdata.save_profile(email, name, age, description, nationality, location, language, varname) 
                 values['successmsg'] = 'Everything worked out fine'    
             render_template(self, 'profileedit.html', values)
 
@@ -121,6 +135,7 @@ class ProfileEditHandler(webapp2.RequestHandler):
             profile = socialdata.get_user_profile(get_user_email())
             if profile:
                 values['name'] = profile.name
+                values['nickname'] = profile.nickname
                 values['age'] = profile.age
                 values['description'] = profile.description
                 values['nationality'] = profile.nationality
