@@ -7,4 +7,4 @@
         git pull: Gets files from github
         git Reset HEAD : will reset the branch to the original branch
         git pull --rebase : going back and trying to work on your changes with other changes. Goes back and changes dff thingss
-        
+        git checkout -- file name: permanently deletes any local changes you made to a file

@@ -1,0 +1,23 @@
+{% extends "_base.html" %}
+{% block content %}
+<center><div id="profileForm">
+    <br>
+    <h1>Profile View</h1>
+    <br>
+    <form method="get" action="">
+    first name: <br>
+    <input type="text" name="firstname" value={{firstname}} readonly><br>
+    last name: <br>
+    <input type="text" name="lastname" value={{lastname}} readonly><br>
+    age: <br>
+    <input type="text" name="age" value={{age}} readonly><br>
+    description: <br>
+    <textarea id="why" name="description" rows="16" readonly>{{description}}</textarea><br>
+    nationality: <br>
+    <input type="text" name="nationality" value={{nationality}} readonly><br>
+    location: <br>
+    <input type="text" name="location" value={{location}} readonly><br>
+    language: <br>
+    <input type="text" name="language" value={{language}} readonly><br>
+</form></div></center>
+{% endblock %}
