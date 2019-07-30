@@ -10,6 +10,7 @@ class UserProfile(ndb.Model):
     location = ndb.StringProperty()
     language = ndb.StringProperty()
     nationality = ndb.StringProperty()
+    profilepic = ndb.BlobKeyProperty()
     last_update = ndb.DateTimeProperty(auto_now=True)  #Sets property to the time it is updated
     # "Age"
     # "loaction"

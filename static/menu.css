@@ -74,7 +74,7 @@ body{
     position: absolute;
     width: 20%;
     left: 40%;
-    top: 5%;
+    top: 3%;
 }
 
 #feedFrame{
@@ -180,4 +180,17 @@ color: white;
 color: rgb(176, 204, 228);
 position: absolute;
 left: 75%;
+}
+
+#profile-view{
+    color: white;
+}
+
+#profile-links{
+    color: white; 
+    font-size: 20px;
+}
+
+#profilepic{
+    width: 30%;
 }

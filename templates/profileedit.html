@@ -4,7 +4,7 @@
     <br>
     <h1>Profile Edit</h1>
     <br>
-    <form method="post" action="/profile-save">
+    <form method="post" action="{{upload_url}}" enctype="multipart/form-data">
     first name: <br>
     <input type="text" name="firstname" value={{firstname}}><br>
     last name: <br>
@@ -19,6 +19,8 @@
     <input type="text" name="location" value={{location}}><br>
     language: <br>
     <input type="text" name="language" value={{language}}><br>
+    profilepic: 
+    <input type="file" id="profilepic" name="profilepic" >
     <input type="submit">
 </form></div></center>
 {% endblock %}

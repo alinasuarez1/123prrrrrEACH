@@ -1,10 +1,28 @@
-{% extends "_base.html" %}
+
+    <head>
+        <link rel="stylesheet" href="/static/menu.css">
+
+    </head>
 {% block content %}
-<center><div id="profileForm">
+<center><div id="profile-view">
     <br>
     <h1>Profile View</h1>
     <br>
-    <form method="get" action="">
+    <p>first name: {{firstname}}</p>
+    <p>last name: {{lastname}} </p>
+    <p>age: {{age}}</p>
+    <p>description:{{description}}</p>
+    <p>nationality: {{nationality}}</p>
+    <p>location: {{location}}</p>
+    <p>language:{{language}}</p>
+    <img id="profilepic" src="/profilepic?user={{userid}}">
+</div></center>
+{% endblock %}
+
+
+
+
+    <!-- <form method="get" action="">
     first name: <br>
     <input type="text" name="firstname" value={{firstname}} readonly><br>
     last name: <br>
@@ -19,5 +37,4 @@
     <input type="text" name="location" value={{location}} readonly><br>
     language: <br>
     <input type="text" name="language" value={{language}} readonly><br>
-</form></div></center>
-{% endblock %}
+</form> -->
