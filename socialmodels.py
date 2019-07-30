@@ -14,3 +14,11 @@ class UserProfile(ndb.Model):
     # "loaction"
     # "language"
     # "speaker = False/True"
+
+class VideoStructure(ndb.Model):
+    url = ndb.StringProperty()
+    title = ndb.StringProperty()
+    description = ndb.StringProperty()
+    language = ndb.StringProperty()
+    last_update = ndb.DateTimeProperty(auto_now=True)
+    email = ndb.StringProperty()

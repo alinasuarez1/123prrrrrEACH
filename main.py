@@ -1,11 +1,16 @@
 import os
 import webapp2
 import socialdata
+from google.appengine.ext import ndb
+
 
 from google.appengine.ext.webapp import template
-from google.appengine.api import users     #Really useful to get information from users. Allos to generate URLS
+# Really useful to get information from users. Allos to generate URLS
+from google.appengine.api import users
 
-def render_template(handler, file_name, template_values):           #puts the template sent on the main page
+
+# puts the template sent on the main page
+def render_template(handler, file_name, template_values):
     path = os.path.join(os.path.dirname(__file__), 'templates/', file_name)
     handler.response.out.write(template.render(path, template_values))
 
@@ -16,6 +21,7 @@ def get_user_email():
         return user.email()
     else:
         return None
+
 
 def get_template_parameters():
     values = {}
@@ -29,16 +35,18 @@ def get_template_parameters():
     return values
 
 
-class MainHandler(webapp2.RequestHandler):          #Request handlers accepts a request and gives back a response
+# Request handlers accepts a request and gives back a response
+class MainHandler(webapp2.RequestHandler):
     def get(self):
         values = get_template_parameters()
         if get_user_email():
             profile = socialdata.get_user_profile(get_user_email())
             if profile:
                 values['name'] = profile.name
-        render_template(self, 'homepage.html', values)    #calling render_template function
+        # calling render_template function
+        render_template(self, 'homepage.html', values)
         self.redirect('/home')
-        
+
 
 class HomeHandler(webapp2.RequestHandler):  # DONT TOUCH
     def get(self):
@@ -49,19 +57,12 @@ class HomeHandler(webapp2.RequestHandler):  # DONT TOUCH
             values['nickname'] = profile.nickname
         render_template(self, 'homepage.html', values)
 
+
 class ProfileEditHandler(webapp2.RequestHandler):
     def get(self):
         values = get_template_parameters()
         render_template(self, 'profileedit.html', values)
 
-class UploadHandler(webapp2.RequestHandler):
-    def get(self):
-        values = get_template_parameters()
-        profile = socialdata.get_user_profile(get_user_email())
-        if profile:
-            values['name'] = profile.name
-            values['nickname'] = profile.nickname
-        render_template(self, 'upload.html', values)
 
 class ProfileHandler(webapp2.RequestHandler):
     def get(self):
@@ -76,11 +77,65 @@ class FeedHandler(webapp2.RequestHandler):
         values = get_template_parameters()
         render_template(self, 'feed.html', values)
 
+
 class ProfileViewHandler(webapp2.RequestHandler):
     def get(self):
         values = get_template_parameters()
         render_template(self, 'feed.html', values)
-        
+
+
+class UploadHandler(webapp2.RequestHandler):
+    def get(self):
+        email = get_user_email()
+        if not email:
+            self.redirect('/')
+        else:
+            error_text = ''
+            title = self.request.get('title')
+            url = self.request.get('videourl')
+            description = self.request.get('vdescription')
+            language = self.request.get('language')
+
+            if len(title) < 2:
+                error_text += 'name should be at least two characters. \n'
+            if len(title) > 20:
+                error_text += 'name should be no more than 20 characters. \n'
+            if len(description) > 4000:
+                error_text += 'Description should be less than 4000 characters. \n'
+
+            for word in description.split():
+                if len(word) > 50:
+                    error_text += 'Description contains words that are too long.\n'
+                    break
+            values = get_template_parameters()
+            values['title'] = title
+            values['url'] = url
+            values['description'] = description
+            values['language'] = language
+            render_template(self, 'upload.html', values)
+
+    def post(self):
+        title = self.request.get('title')
+        url = self.request.get('videourl')
+        description = self.request.get('vdescription')
+        language = self.request.get('language')
+        email = get_user_email()
+        socialdata.upload_video(email, url, description, language, title)
+        self.redirect('/')
+
+    # def get(self):
+    #     email = get_user_email()
+    #     if not email:
+    #         self.redirect('/')
+    #     else:
+    #         values = get_template_parameters()
+    #         profile = socialdata.get_user_profile(get_user_email())
+    #         if profile:
+    #             values['name'] = profile.name
+    #             values['nickname'] = profile.nickname
+    #         render_template(self, 'upload.html', values)
+
+
 class ProfileSaveHandler(webapp2.RequestHandler):
     def post(self):
         email = get_user_email()
@@ -118,13 +173,15 @@ class ProfileSaveHandler(webapp2.RequestHandler):
             values['language'] = language
             varname = name[:9]
             values['nickname'] = varname
-            
+
             if error_text:
                 values['errormsg'] = error_text
             else:
-                socialdata.save_profile(email, name, age, description, nationality, location, language, varname) 
-                values['successmsg'] = 'Everything worked out fine'    
+                socialdata.save_profile(
+                    email, name, age, description, nationality, location, language, varname)
+                values['successmsg'] = 'Everything worked out fine'
             render_template(self, 'profileedit.html', values)
+
 
 class ProfileEditHandler(webapp2.RequestHandler):
     def get(self):
@@ -144,7 +201,7 @@ class ProfileEditHandler(webapp2.RequestHandler):
             render_template(self, 'profileedit.html', values)
 
 
-app = webapp2.WSGIApplication([         #Anything that isn't specified goes to the main page
+app = webapp2.WSGIApplication([  # Anything that isn't specified goes to the main page
     ("/home", HomeHandler),
     ('/profileedit', ProfileEditHandler),
     ('/profile-save', ProfileSaveHandler),

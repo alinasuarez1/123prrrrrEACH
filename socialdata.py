@@ -1,4 +1,5 @@
 from socialmodels import UserProfile
+from socialmodels import VideoStructure
 
 def save_profile(email, name, age, description, nationality, location, language, nickname):
     p = get_user_profile(email)
@@ -31,3 +32,7 @@ def get_profile_by_name(name):
 def get_recent_profiles():      #Can use on the feed, to return profiles/videos of recent users
     q = UserProfile.query().order(-UserProfile.last_update)
     return q.fetch(50)
+
+def upload_video(email ,url, description, language, title):
+    v = VideoStructure(email = email, title= title, description=description, language=language, url=url)
+    v.put()
