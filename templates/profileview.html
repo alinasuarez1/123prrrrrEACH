@@ -1,40 +1,26 @@
-
+<html>
     <head>
         <link rel="stylesheet" href="/static/menu.css">
 
     </head>
-{% block content %}
-<center><div id="profile-view">
-    <br>
-    <h1>Profile View</h1>
-    <br>
-    <p>first name: {{firstname}}</p>
-    <p>last name: {{lastname}} </p>
-    <p>age: {{age}}</p>
-    <p>description:{{description}}</p>
-    <p>nationality: {{nationality}}</p>
-    <p>location: {{location}}</p>
-    <p>language:{{language}}</p>
-    <img id="profilepic" src="/profilepic?user={{userid}}">
-</div></center>
-{% endblock %}
-
-
-
-
-    <!-- <form method="get" action="">
-    first name: <br>
-    <input type="text" name="firstname" value={{firstname}} readonly><br>
-    last name: <br>
-    <input type="text" name="lastname" value={{lastname}} readonly><br>
-    age: <br>
-    <input type="text" name="age" value={{age}} readonly><br>
-    description: <br>
-    <textarea id="why" name="description" rows="16" readonly>{{description}}</textarea><br>
-    nationality: <br>
-    <input type="text" name="nationality" value={{nationality}} readonly><br>
-    location: <br>
-    <input type="text" name="location" value={{location}} readonly><br>
-    language: <br>
-    <input type="text" name="language" value={{language}} readonly><br>
-</form> -->
+    <body>
+        <center><div id="profile-view">
+            <br>
+            <h1>Profile View</h1>
+            <br>
+            <p>first name: {{firstname}}</p>
+            <p>last name: {{lastname}} </p>
+            <p>age: {{age}}</p>
+            <p>description:{{description}}</p>
+            <p>nationality: {{nationality}}</p>
+            <p>location: {{location}}</p>
+            <p>language:{{language}}</p>
+            <!-- {% for videos in profile.database %} -->
+            <!-- {% endfor %} -->
+            <img id="profilepic" src="/profilepic?user={{userid}}">
+        </div></center>
+        <iframe width="420" height="315"
+        src="{{video_link}}">
+        </iframe>
+    </body>
+</html>

@@ -74,15 +74,16 @@ class ProfileHandler(webapp2.RequestHandler):
 
 class FeedHandler(webapp2.RequestHandler):
     def get(self):
-        profiles = socialdata.get_recent_profiles()
+        profiles = socialdata.get_videos()
         values = get_template_parameters()
         values['profiles'] = profiles
-        render_template(self, 'feed.html', values) 
+        render_template(self, 'feed.html', values)
 
 
 class ProfileViewHandler(webapp2.RequestHandler):
-    def get(self, firstname):
-        profile = socialdata.get_profile_by_name(firstname)
+    def get(self, email):
+        profile = socialdata.get_user_profile(email)
+        print profile
         values = get_template_parameters()
         render_template(self, 'feed.html', values)
         if profile: 
@@ -95,6 +96,7 @@ class ProfileViewHandler(webapp2.RequestHandler):
             values['language'] = profile.language
             values['userid'] = profile.key.urlsafe()
         render_template(self, 'profileview.html', values)
+
 
 
 class UploadHandler(webapp2.RequestHandler):
@@ -135,7 +137,7 @@ class UploadHandler(webapp2.RequestHandler):
         description = self.request.get('vdescription')
         language = self.request.get('language')
         email = get_user_email()
-        socialdata.upload_video(email, url, description, language, title)
+        socialdata.upload_video(email, url, description, language, title,)
         self.redirect('/')
 
     # def get(self):
