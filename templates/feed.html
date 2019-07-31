@@ -1,17 +1,12 @@
 <html>
     <head>
-        <style>
-            h1{
-                color: rgb(176, 204, 228);
-                text-align: center;
-            }
-        </style>
-    </head> 
+        <link rel="stylesheet" href="/static/menu.css">
+    </head>
     <body>
         <br>
         <h1>Main Page</h1>
         {% for profile in profiles %}
-        <a href="/profileview">{{profile.firstname}}</a> - updated {{profile.last_update}}
+        <a href="/profileview/{{profile.firstname}}" id="profile-links">{{profile.firstname}}</a> - updated {{profile.last_update}}
         <br><br>
         {% endfor %}
 
