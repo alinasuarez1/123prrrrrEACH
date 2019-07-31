@@ -74,9 +74,9 @@ class ProfileHandler(webapp2.RequestHandler):
 
 class FeedHandler(webapp2.RequestHandler):
     def get(self):
-        profiles = socialdata.get_videos()
+        videos = socialdata.get_videos(20)
         values = get_template_parameters()
-        values['profiles'] = profiles
+        values['videos'] = videos
         render_template(self, 'feed.html', values)
 
 
@@ -87,6 +87,9 @@ class ProfileViewHandler(webapp2.RequestHandler):
         values = get_template_parameters()
         render_template(self, 'feed.html', values)
         if profile: 
+            videos = socialdata.get_videos(20)
+            values = get_template_parameters()
+            values['videos'] = videos
             values['firstname'] = profile.firstname
             values['lastname'] = profile.lastname
             values['age'] = profile.age
@@ -94,6 +97,7 @@ class ProfileViewHandler(webapp2.RequestHandler):
             values['nationality'] = profile.nationality
             values['location'] = profile.location
             values['language'] = profile.language
+            values['email'] =  email
             values['userid'] = profile.key.urlsafe()
         render_template(self, 'profileview.html', values)
 
@@ -128,6 +132,7 @@ class UploadHandler(webapp2.RequestHandler):
             values['url'] = url
             values['description'] = description
             values['language'] = language
+            values['nickname'] = socialdata.get_user_profile(get_user_email()).nickname
             render_template(self, 'upload.html', values)
 
     def post(self):
@@ -137,7 +142,7 @@ class UploadHandler(webapp2.RequestHandler):
         description = self.request.get('vdescription')
         language = self.request.get('language')
         email = get_user_email()
-        socialdata.upload_video(email, url, description, language, title,)
+        socialdata.upload_video(email, url, description, language, title)
         self.redirect('/')
 
     # def get(self):

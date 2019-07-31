@@ -5,15 +5,13 @@
     <body>
         <br>
         <h1>Main Page</h1>
-        {% for profile in profiles %}
-        <a href="/profileview/{{profile.email}}" id="profile-links">{{profile.title}}</a> - Posted by {{profile.email}} at {{profile.last_update}}
-        <br>
-       <iframe width="420" height="315"
-            src="{{profile.url}}">
-        </iframe> 
-        <br>
-        {% endfor %}
-
-
+        {% for video in videos %}
+            <a href="/profileview/{{video.email}}" id="profile-links">{{video.title}}</a> - Posted by {{video.email}} at {{video.last_update}}
+            <br>
+            <iframe width="420" height="315"
+                src="{{video.url}}">
+            </iframe> 
+            <br>
+            {% endfor %}
     </body>
 </body>

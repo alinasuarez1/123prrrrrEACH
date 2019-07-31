@@ -1,8 +1,20 @@
 from google.appengine.ext import ndb
 
+
+
+class Video(ndb.Model):
+    url = ndb.StringProperty()
+    title = ndb.StringProperty()
+    description = ndb.StringProperty()
+    language = ndb.StringProperty()
+    last_update = ndb.DateTimeProperty(auto_now=True)
+    email = ndb.StringProperty()
+
+
 class UserProfile(ndb.Model):
     firstname = ndb.StringProperty()
     lastname = ndb.StringProperty()
+    videos = ndb.KeyProperty(Video, repeated=True)
     age = ndb.StringProperty()
     nickname = ndb.StringProperty()
     email = ndb.StringProperty()
@@ -16,11 +28,3 @@ class UserProfile(ndb.Model):
     # "loaction"
     # "language"
     # "speaker = False/True"
-
-class VideoStructure(ndb.Model):
-    url = ndb.StringProperty()
-    title = ndb.StringProperty()
-    description = ndb.StringProperty()
-    language = ndb.StringProperty()
-    last_update = ndb.DateTimeProperty(auto_now=True)
-    email = ndb.StringProperty()
