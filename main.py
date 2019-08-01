@@ -34,7 +34,7 @@ def get_template_parameters():
         values['feed_url'] = '/home'
         values['home_url'] = '/mainpage'
     else:
-        values['login_url'] = users.create_login_url('/')
+        values['login_url'] = users.create_login_url('/profileedit')
     return values
 
 
@@ -126,6 +126,7 @@ class UploadHandler(webapp2.RequestHandler):
             error_text = ''
             title = self.request.get('title')
             url = self.request.get('videourl')
+            url = url.replace("watch?v=", "embed/")
             description = self.request.get('vdescription')
             language = self.request.get('language')
 
@@ -155,6 +156,7 @@ class UploadHandler(webapp2.RequestHandler):
         print('Post method')
         title = self.request.get('title')
         url = self.request.get('videourl')
+        url = url.replace("watch?v=", "embed/")
         description = self.request.get('vdescription')
         language = self.request.get('language')
         email = get_user_email()

@@ -292,8 +292,16 @@ top: 2%;
 #profile-links{
     color: white; 
     font-size: 20px;
+    width: 420px;
 }
 
 #profilepic{
     width: 30%;
+}
+.video_div{
+    position:relative;
+    float: left;
+    padding: 1.2%;
+    word-break: break-all;
+    width: 430;
 }
