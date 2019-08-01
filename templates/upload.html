@@ -6,13 +6,13 @@
     <br>
     <form method="post" action="/upload">
     Video Title: <br>
-    <input type="text" name="title" value={{title}}><br>
+    <input required type="text" name="title" value={{title}}><br>
     Video URL: <br>
-    <input type="text" name="videourl" value={{url}}><br>
+    <input required type="text" name="videourl" value={{url}}><br>
     Video Description: <br>
     <textarea id="why" name="vdescription" rows="16">{{vdescription}}</textarea><br>
     Language: <br>
-    <input type="text" name="language" value={{language}}><br>
+    <input required type="text" name="language" value={{language}}><br>
     <input type="submit">
 </form></div></center>
 {% endblock %}
