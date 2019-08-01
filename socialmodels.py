@@ -12,6 +12,8 @@ class Video(ndb.Model):
 
 
 class UserProfile(ndb.Model):
+    followers = ndb.StringProperty(repeated=True)
+    following = ndb.StringProperty(repeated=True)
     firstname = ndb.StringProperty()
     lastname = ndb.StringProperty()
     videos = ndb.KeyProperty(Video, repeated=True)
