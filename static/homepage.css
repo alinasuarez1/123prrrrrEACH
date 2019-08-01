@@ -1,0 +1,26 @@
+body{
+    background-color: rgba(0, 0, 0, 0.1);
+    color: white;
+}
+
+a{
+    text-decoration: none;
+    font-weight: bold;
+    color: rgb(180, 210, 255);
+    transition: all .3s ease;
+}
+
+a:hover{
+    color: white; 
+}
+
+#videos{
+    position: relative;
+    top: 50%;
+    width: 50%;
+    height: auto;
+}
+
+h1{
+    font-size: 40;
+}

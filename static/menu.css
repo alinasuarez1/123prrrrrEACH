@@ -1,17 +1,83 @@
 body{
     background-color: white;
-    background-image: url('https://media.giphy.com/media/l3vR9AY7Wjee8T9As/giphy.gif');
     background-size: cover;
     color: rgb(176, 204, 228);
+    height: 100%;
+    overflow: auto;
+    background-image: url("https://media.giphy.com/media/xUA7b9HAKGRDT3Rfsk/giphy.gif")
     }
 
-#banner{
-    width: 70%;
-    height: 17%;
+#white{
+    background-color: white;
+    background-image: none;
+}
+
+#aboutus{
     position: absolute;
-    left: 15%;
+    left: 20%;
+    top: 80%;
+    width: 60%;
+    height: 50%;
+    font-size: 22;
+    color: rgb(40, 40, 40);
+    text-align: center;
+    font-family: "Verdana";
+}
+
+#aboutus2{
+    position: absolute;
+    left: 2%;
+    top: 115%;
+    width: 30%;
+    height: 50%;
+    font-size: 22;
+    color: rgb(40, 40, 40);
+    text-align: center;
+    font-family: "Verdana";
+}
+
+#aboutus3{
+    position: absolute;
+    left: 33%;
+    top: 115%;
+    width: 30%;
+    height: 50%;
+    font-size: 22;
+    color: rgb(40, 40, 40);
+    text-align: center;
+    font-family: "Verdana";
+}
+
+#aboutus4{
+    position: absolute;
+    left: 65%;
+    top: 115%;
+    width: 30%;
+    height: 50%;
+    font-size: 22;
+    color: rgb(40, 40, 40);
+    text-align: center;
+    font-family: "Verdana";
+}
+
+
+#abotustitle{
+    color: navy;
+    font-size: 37;
+    font-weight: 900;
+}
+
+
+
+
+#banner{
+    width: 100%;
+    height: 15%;
+    position: absolute;
+    left: 0%;
     top: 0%;
-    background-color: rgba(0,0,0,.6);
+    background-color: rgba(0,0,0,.75);
+    z-index: 2;
 }
 
 #banner img{
@@ -25,7 +91,7 @@ body{
     position: absolute;
     top: 15%;
     left: 15%;
-    z-index: 1;
+    z-index: 5;
 }
 
 #topmenu button{
@@ -48,25 +114,27 @@ body{
 }
 
 #profileFrame{
-    height: auto;
     width: 4.7%;
+    height: 9%;
     position: absolute;
-    top: 0.4%;
+    top: 2.5%;
     border-radius: 100%;
-    left: 70%;
+    left: 79%;
     border: 2px solid  rgb(176, 204, 228);
     background-color: white;
+    z-index: 3;
 }
 
 #profileForm{
-    font-size: 24px;
-    background-color:rgba(0, 0, 0, .4);
-    width: 70%;
-    height: 89%;
+    width: 90%;
+    height: 83%;
     position: absolute;
-    left: 15%;
+    top: 17%;
     overflow: auto;
-    top: 11%;
+    font-size: 25;
+    color: white;
+    left: 5%;
+    background-color:rgba(0, 0, 0, .6);
 }
 
 #logo{
@@ -78,11 +146,11 @@ body{
 }
 
 #feedFrame{
-    width: 70%;
-    height: 89%;
+    width: 90%;
+    height: 83%;
     position: absolute;
-    top: 11%;
-    left: 15%;
+    top: 17%;
+    left: 5%;
     background-color:rgba(0, 0, 0, .6);
 }
 
@@ -109,7 +177,7 @@ body{
 
 #profileForm input[type=submit] {
   width: 20%;
-  background-color: rgba(16, 16, 105, 0.779);
+  background-color: rgb(88, 88, 88);
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
@@ -121,7 +189,7 @@ body{
 }
 
 #profileForm input[type=submit]:hover {
-  background-color:  rgba(176, 204, 228, 1);
+  background-color: rgba(185, 186, 187, 0.979);
 }
 
 #profileForm div {
@@ -133,17 +201,21 @@ body{
 
 /* Dropdown Button */
 .dropbtn {
-  background-color: rgb(86, 132, 192);
+  background-color: rgb(88, 88, 88);
   color: white;
   padding: 16px;
   font-size: 16px;
+  border-radius: 4px;
   border: none;
+  z-index: 3;
 }
 
 /* The container <div> - needed to position the dropdown content */
 .dropdown {
   position: relative;
-  left: 15%;
+  left: 1%;
+  top: 3%;
+  z-index: 3;
   display: inline-block;
 }
 
@@ -154,7 +226,7 @@ body{
   background-color: #f1f1f1;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
+  z-index: 3;
 }
 
 /* Links inside the dropdown */
@@ -162,24 +234,55 @@ body{
   color: black;
   padding: 12px 16px;
   text-decoration: none;
+  z-index: 3;
   display: block;
 }
 
 /* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: rgba(111, 160, 224, .7);}
+.dropdown-content a:hover {background-color: rgba(185, 186, 187, 0.979);}
 
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {display: block; }
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {background-color: rgb(111, 160, 224);}
+.dropdown:hover .dropbtn {background-color: rgba(185, 186, 187, 0.979);}
+
+
+.slideshow{
+    width: 100%;
+    height: 77%;
+    position: absolute;
+    top: 0%;
+    overflow: hidden;
+    left: 0%;
+}
+
+.slideshow img{
+    position: absolute;
+    top: -50%;
+}
+
+.button1{
+    position: absolute;
+    top: 50%;
+    left: 2%;
+    z-index: 3;
+}
+
+.button2{
+    position: absolute;
+    top: 50%;
+    left: 97%;
+    z-index: 3;
+}
 
 #pname{
 z-index: 3;
 color: white;
 color: rgb(176, 204, 228);
 position: absolute;
-left: 75%;
+left: 85%;
+top: 2%;
 }
 
 #profile-view{

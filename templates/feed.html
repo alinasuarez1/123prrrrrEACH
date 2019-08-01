@@ -1,17 +1,19 @@
 <html>
     <head>
-        <link rel="stylesheet" href="/static/menu.css">
+        <link rel="stylesheet" href="/static/homepage.css">
     </head>
     <body>
         <br>
-        <h1>Main Page</h1>
+        <center><div id="videos">
+        <h1>Feed</h1>
         {% for video in videos %}
             <a href="/profileview/{{video.email}}" id="profile-links">{{video.title}}</a> - Posted by {{video.email}} at {{video.last_update}}
-            <br>
+            <br><br>
             <iframe width="420" height="315"
                 src="{{video.url}}">
             </iframe> 
-            <br>
+            <br><br><br>
             {% endfor %}
+        </div></center>
     </body>
 </body>

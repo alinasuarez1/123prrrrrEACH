@@ -31,7 +31,8 @@ def get_template_parameters():
         values['profileedit_url'] = '/profileedit'
         values['upload_url'] = blobstore.create_upload_url('/profile-save')
         values['upload_url2'] = ('/upload')
-        values['home_url'] = '/home'
+        values['feed_url'] = '/home'
+        values['home_url'] = '/mainpage'
     else:
         values['login_url'] = users.create_login_url('/')
     return values
@@ -55,14 +56,26 @@ class HomeHandler(webapp2.RequestHandler):  # DONT TOUCH
         if profile:
             values['firstname'] = profile.firstname
             values['nickname'] = profile.nickname
+            values['userid'] = profile.key.urlsafe()
         render_template(self, 'homepage.html', values)
 
 
 class ProfileEditHandler(webapp2.RequestHandler):
     def get(self):
         values = get_template_parameters()
+        profile = socialdata.get_user_profile(get_user_email())
+        values['userid'] = profile.key.urlsafe()
         render_template(self, 'profileedit.html', values)
 
+class MainPageHandler(webapp2.RequestHandler):
+    def get(self):
+        values = get_template_parameters()
+        profile = socialdata.get_user_profile(get_user_email())
+        if profile:
+            values['firstname'] = profile.firstname
+            values['nickname'] = profile.nickname
+            values['userid'] = profile.key.urlsafe()
+        render_template(self, 'index.html', values)
 
 class ProfileHandler(webapp2.RequestHandler):
     def get(self):
@@ -133,7 +146,10 @@ class UploadHandler(webapp2.RequestHandler):
             values['description'] = description
             values['language'] = language
             values['nickname'] = socialdata.get_user_profile(get_user_email()).nickname
+            profile = socialdata.get_user_profile(get_user_email())
+            values['userid'] = profile.key.urlsafe()
             render_template(self, 'upload.html', values)
+            
 
     def post(self):
         print('Post method')
@@ -212,6 +228,8 @@ class ProfileSaveHandler(blobstore_handlers.BlobstoreUploadHandler):
             else:
                 socialdata.save_profile(email, firstname, lastname, age, description, nationality, location, language, varname, profilepic) 
                 values['successmsg'] = 'Everything worked out fine'
+                profile = socialdata.get_user_profile(get_user_email())
+                values['userid'] = profile.key.urlsafe()
             render_template(self, 'profileedit.html', values)
 
 
@@ -232,6 +250,8 @@ class ProfileEditHandler(webapp2.RequestHandler):
                 values['location'] = profile.location
                 values['language'] = profile.language
                 #values['profilepic'] = profile.profilepic
+                profile = socialdata.get_user_profile(get_user_email())
+                values['userid'] = profile.key.urlsafe()
             render_template(self, 'profileedit.html', values)
 
 class ImageHandler(blobstore_handlers.BlobstoreDownloadHandler):
@@ -250,6 +270,7 @@ class DeleteHandler(webapp2.RequestHandler):
 
 app = webapp2.WSGIApplication([         #Anything that isn't specified goes to the main page
     ("/home", HomeHandler),
+    ("/mainpage", MainPageHandler),
     ('/profileedit', ProfileEditHandler),
     ('/profile-save', ProfileSaveHandler),
     ('/profileview/(.*)', ProfileViewHandler),

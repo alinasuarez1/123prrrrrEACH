@@ -5,7 +5,7 @@
     </head>
     <body>
         <div id="banner"></div>
-        <a href="{{profileedit_url}}"><img src="/profilepic?user={{userid}}"></a>
+        <a href="{{profileedit_url}}"><img src="/profilepic?user={{userid}}" id="profileFrame"></a>
         <img id="logo" src="static/images/logo.png">
         <h1 id="pname">{{nickname}}</h1>
         <!-- {%if successmsg%}
@@ -23,6 +23,7 @@
                     <a href="{{login_url}}"><button type="button">Login</button></a>
                     {% else %}
                     <a href="{{home_url}}">Home</b>
+                    <a href="{{feed_url}}">Feed</b>
                     <a href="{{profileedit_url}}">Edit Profile</a>
                     <a href="{{upload_url2}}">Upload</a>
                     <a href="{{logout_url}}">Logout</button></a>

@@ -1,0 +1,93 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="/static/menu.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+        .mySlides {display:none;}
+        </style>
+    </head>
+    <body id="white">
+        <div id="banner"></div>
+        <a href="{{profileedit_url}}"><img src="/profilepic?user={{userid}}" id="profileFrame"></a>
+        <img id="logo" src="static/images/logo.png">
+        <h1 id="pname">{{nickname}}</h1>
+        <!-- {%if successmsg%}
+        <div id="successmsg">{{successmsg}}</div>
+        {% endif %}
+        {% if errormsg %}
+        <div id="errormsg">{{errormsg|linebreaks}}</div>
+        {% endif %} -->
+        <div class="dropdown">
+        <button class="dropbtn">Dropdown</button>
+            <div class="dropdown-content">
+                <br>
+                    <!-- <a href="/"><button type="button" id= "homebtn" ></button></a> -->
+                    {% if login_url %}      <!--If login url is true-->
+                    <a href="{{login_url}}"><button type="button">Login</button></a>
+                    {% else %}
+                    <a href="{{home_url}}">Home</b>
+                    <a href="{{feed_url}}">Feed</b>
+                    <a href="{{profileedit_url}}">Edit Profile</a>
+                    <a href="{{upload_url2}}">Upload</a>
+                    <a href="{{logout_url}}">Logout</button></a>
+                    <div>
+                </div>
+            {% endif %}
+            </div>
+        </div>
+
+    <div class="slideshow">
+        <img class="mySlides" src="static/images/pic1.jpg" style="width:100%">
+        <img class="mySlides" src="static/images/pic2.jpg" style="width:100%">
+        <img class="mySlides" src="static/images/pic3.jpg" style="width:100%">
+        <img class="mySlides" src="static/images/pic4.jpg" style="width:100%">
+        <img class="mySlides" src="static/images/pic5.jpg" style="width:100%">
+
+        <button class="button1" onclick="plusDivs(-1)">&#10094;</button>
+        <button class="button2" onclick="plusDivs(1)">&#10095;</button>
+    </div>
+
+
+    <div id="aboutus">
+        <h1 id="abotustitle"> What is 123Preach? </h1>
+        <p>123Preach is a platform where religious figures can share their messages with the world, no longer being limited by the borders of their parishes and communities. With 123Preach, their impact could be limitless with the touch of a button. All humans can browse through their favorite preachers' podcasts on the go. Most importantly, however, all religions are welcome on this platform. Join today!</p>
+    </div>
+
+    <div id="aboutus2">
+        <h1 id="abotustitle"> What is 123Preach? </h1>
+        <p>123Preach is a platform where religious figures can share their messages with the world, no longer being limited by the borders of their parishes and communities. With 123Preach, their impact could be limitless with the touch of a button. All humans can browse through their favorite preachers' podcasts on the go. Most importantly, however, all religions are welcome on this platform. Join today!</p>
+    </div>
+
+    <div id="aboutus3">
+        <h1 id="abotustitle"> What is 123Preach? </h1>
+        <p>123Preach is a platform where religious figures can share their messages with the world, no longer being limited by the borders of their parishes and communities. With 123Preach, their impact could be limitless with the touch of a button. All humans can browse through their favorite preachers' podcasts on the go. Most importantly, however, all religions are welcome on this platform. Join today!</p>
+    </div>
+
+    <div id="aboutus4">
+        <h1 id="abotustitle"> Igor </h1>
+        <p>123Preach is a platform where religious figures can share their messages with the world, no longer being limited by the borders of their parishes and communities. With 123Preach, their impact could be limitless with the touch of a button. All humans can browse through their favorite preachers' podcasts on the go. Most importantly, however, all religions are welcome on this platform. Join today!</p>
+    </div>
+
+<script>
+var slideIndex = 1;
+showDivs(slideIndex);
+
+function plusDivs(n) {
+  showDivs(slideIndex += n);
+}
+
+function showDivs(n) {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  if (n > x.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = x.length}
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";  
+  }
+  x[slideIndex-1].style.display = "block";  
+}
+</script>
+
+
+    </body>
+</html>
