@@ -233,6 +233,7 @@ class ProfileSaveHandler(blobstore_handlers.BlobstoreUploadHandler):
                 profile = socialdata.get_user_profile(get_user_email())
                 values['userid'] = profile.key.urlsafe()
             render_template(self, 'profileedit.html', values)
+            self.redirect('/home')
 
 
 class ProfileEditHandler(webapp2.RequestHandler):
