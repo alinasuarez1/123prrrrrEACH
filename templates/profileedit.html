@@ -6,11 +6,11 @@
     <br>
     <form method="post" action="{{upload_url}}" enctype="multipart/form-data">
     first name: <br>
-    <input type="text" name="firstname" value={{firstname}}><br>
+    <input required type="text" name="firstname" value={{firstname}} ><br>
     last name: <br>
-    <input type="text" name="lastname" value={{lastname}}><br>
+    <input required type="text" name="lastname" value={{lastname}}><br>
     age: <br>
-    <input type="text" name="age" value={{age}}><br>
+    <input required type="text" name="age" value={{age}}><br>
     description: <br>
     <textarea id="why" name="description" rows="16">{{description}}</textarea><br>
     nationality: <br>
@@ -20,7 +20,7 @@
     language: <br>
     <input type="text" name="language" value={{language}}><br>
     profilepic: 
-    <input type="file" id="profilepic" name="profilepic" >
+    <input required type="file" id="profilepic" name="profilepic" >
     <input type="submit">
 </form></div></center>
 {% endblock %}
