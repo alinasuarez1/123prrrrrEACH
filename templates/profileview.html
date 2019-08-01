@@ -3,7 +3,7 @@
         <link rel="stylesheet" href="/static/menu.css">
 
     </head>
-    <body>
+    <body id="profileviewbody">
         <script type="text/javascript">
         function onClick(email){
             var xhttp = new XMLHttpRequest();
@@ -19,11 +19,10 @@
         </script>
         <center><div id="profile-view">
             
-            <h1>Profile View</h1>
-            <p>first name: {{firstname}}</p>
-            <p>last name: {{lastname}} </p>
+            <p id="profileviewname">{{firstname}} {{lastname}} </p>
+            <img id="profilepic" src="/profilepic?user={{userid}}">
+            <p>About {{firstname}}: {{description}}</p>
             <p>age: {{age}}</p>
-            <p>description:{{description}}</p>
             <p>nationality: {{nationality}}</p>
             <p>location: {{location}}</p>
             <p>language:{{language}}</p>
@@ -32,14 +31,12 @@
             <!-- <form method="get" action="/followbtn?email={{email}}">
             <input type="submit" action="/followbtn" value="follow"> 
             </form> -->
-            <button onclick="onClick('{{email}}')">Follow</button>
+            <button class="dropbtn" onclick="onClick('{{email}}')">Follow</button>
             
 
 
             <!-- {% for videos in profile.database %} -->
             <!-- {% endfor %} -->
-            <img id="profilepic" src="/profilepic?user={{userid}}">
-             <h1>{{firstname}}'s Videos</h1>
         </div>
         </center>
             {% for video in videos %}
