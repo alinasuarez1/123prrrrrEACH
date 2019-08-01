@@ -87,9 +87,16 @@ class ProfileHandler(webapp2.RequestHandler):
 
 class FeedHandler(webapp2.RequestHandler):
     def get(self):
+
         videos = socialdata.get_videos(20)
+        for video in videos:
+            first_name = socialdata.get_user_profile(video.email).firstname
+            last_name = socialdata.get_user_profile(video.email).lastname
+            video.firstname = first_name
+            video.lastname = last_name
         values = get_template_parameters()
         values['videos'] = videos
+
         render_template(self, 'feed.html', values)
 
 
