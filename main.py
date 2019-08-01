@@ -266,6 +266,18 @@ class DeleteHandler(webapp2.RequestHandler):
         key = ndb.Key(urlsafe='aghkZXZ-Tm9uZXIYCxILVXNlclByb2ZpbGUYgICAgICA6AkM')
         key.delete()
         self.response.out.write('deleted')
+
+class FollowHandler(webapp2.RequestHandler):
+    def get(self):
+        email = self.request.get('email')
+        print("####################")
+        print(email)
+        print("######################")
+        followeremail = get_user_email()
+        followingemail = email
+        print(followeremail)
+        print(followingemail)
+        socialdata.follow_user(followeremail, followingemail)
         
 
 app = webapp2.WSGIApplication([         #Anything that isn't specified goes to the main page
@@ -278,6 +290,7 @@ app = webapp2.WSGIApplication([         #Anything that isn't specified goes to t
     ('/upload', UploadHandler),
     ('/profile', ProfileHandler),
     ('/feed', FeedHandler),
+    ('/followbtn', FollowHandler),
     ('/deletor', DeleteHandler),
     ('.*', MainHandler),
 ])

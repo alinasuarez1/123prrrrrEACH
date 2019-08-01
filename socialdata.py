@@ -35,7 +35,6 @@ def get_recent_profiles():      #Can use on the feed, to return profiles/videos 
     q = UserProfile.query().order(-UserProfile.last_update)
     return q.fetch(50)
 
-
 def get_videos(var):
     v = Video.query().order(-Video.last_update)
     return v.fetch(var)
@@ -46,3 +45,21 @@ def upload_video(email ,url, description, language, title):
     var = v.put()
     profile.videos.append(var)
     profile.put()
+
+def follow_user(emailfollower, emailfollowing):
+    if emailfollower != emailfollowing:
+        ufollower = get_user_profile(emailfollower)     #grabs profile of whoever followed
+        ufollowing = get_user_profile(emailfollowing)   #grabs profile of whoever is being followed
+        print("follow_user before if")
+        print(ufollower)
+        print (ufollowing)
+        if ufollower and ufollowing:
+            print("profiles exist on followuser")
+            if not(ufollowing.key.urlsafe()in ufollower.following):
+                print("it is still going, somehow...")
+                ufollower.following.append(ufollowing.key.urlsafe())
+                ufollowing.followers.append(ufollower.key.urlsafe())
+        ufollower.put()
+        ufollowing.put()
+    else:
+        print("you can't follow yourself dummy")
