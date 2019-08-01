@@ -4,16 +4,25 @@
     </head>
     <body>
         <br>
-        <center><div id="videos">
         <h1>Feed</h1>
         {% for video in videos %}
-            <a href="/profileview/{{video.email}}" id="profile-links">{{video.title}}</a> - Posted by {{video.email}} at {{video.last_update}}
-            <br><br>
-            <iframe width="420" height="315"
-                src="{{video.url}}">
-            </iframe> 
-            <br><br><br>
+            <div class="main_video_div">
+                
+                <div id="vid_iframe">
+                <iframe width="420" height="250"
+                    src="{{video.url}}">
+                </iframe> 
+                </div>
+
+                <div id="vid_info">
+                <a href="/profileview/{{video.email}}" id="profile-links">{{video.title}}</a>
+                <br>
+                <p id="vid_user">By user:{{video.email}}</p>
+                <p id="vid_description">{{video.description}}</p>
+                </div>
+            </div>
+            <br>
             {% endfor %}
-        </div></center>
+       
     </body>
 </body>

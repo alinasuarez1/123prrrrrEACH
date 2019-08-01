@@ -14,13 +14,32 @@ a:hover{
     color: white; 
 }
 
-#videos{
-    position: relative;
-    top: 50%;
-    width: 50%;
-    height: auto;
-}
+
 
 h1{
     font-size: 40;
+}
+
+.main_video_div{
+    display:flex;
+    position: relative;
+    
+}
+
+#profile-links{
+    font-size: 26px;
+    width: 420px;
+}
+#vid_user{
+    font-size: 20px;
+}
+
+#vid_info{
+    position: relative;
+    padding-left: 5%;
+    padding-top:1.5%;
+
+}
+#vid_iframe{
+    float:right;
 }

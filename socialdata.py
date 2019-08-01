@@ -41,6 +41,7 @@ def get_videos(var):
 
 def upload_video(email ,url, description, language, title):
     profile = get_user_profile(email)
+    
     v = Video(email = email, title= title, description=description, language=language, url=url)
     var = v.put()
     profile.videos.append(var)
