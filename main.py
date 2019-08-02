@@ -181,7 +181,6 @@ class UploadHandler(webapp2.RequestHandler):
             profile = socialdata.get_user_profile(get_user_email())
             values['userid'] = profile.key.urlsafe()
             render_template(self, 'upload.html', values)
-            
 
     def post(self):
         print('Post method')
@@ -192,7 +191,7 @@ class UploadHandler(webapp2.RequestHandler):
         language = self.request.get('language')
         email = get_user_email()
         socialdata.upload_video(email, url, description, language, title)
-        self.redirect('/')
+        self.redirect('/home')
 
     # def get(self):
     #     email = get_user_email()
@@ -314,6 +313,7 @@ class FollowHandler(webapp2.RequestHandler):
         print(followeremail)
         print(followingemail)
         socialdata.follow_user(followeremail, followingemail)
+        self.redirect('/home')
         
 
 app = webapp2.WSGIApplication([         #Anything that isn't specified goes to the main page
