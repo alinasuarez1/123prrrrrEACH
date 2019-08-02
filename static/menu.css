@@ -353,3 +353,12 @@ font-family: roboto;
     font-size: 35;
     font-weight: bold;
 }
+
+#joinnowbtn{
+    text-decoration: none;
+}
+
+#joinnowbtn:hover{
+    background-color: rgba(185, 186, 187, 0.979);
+}
+
