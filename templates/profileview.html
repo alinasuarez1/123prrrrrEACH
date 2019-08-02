@@ -17,31 +17,40 @@
             xhttp.send();
         }
         </script>
-        <center><div id="profile-view">
-            
-            <p id="profileviewname">{{firstname}} {{lastname}} </p>
+        <div id="profile-view">
+            <div id="profileviewname">
+                <span id="user_name">{{firstname}} {{lastname}} </span>
+                <button class="dropbtn" onclick="onClick('{{email}}')">Follow</button>
+            </div>
             <img id="profilepic" src="/profilepic?user={{userid}}">
             <p>About {{firstname}}: {{description}}</p>
-            <p>age: {{age}}</p>
-            <p>nationality: {{nationality}}</p>
-            <p>location: {{location}}</p>
-            <p>language:{{language}}</p>
-
-
+            <div id ="age_nat">
+                <p>age: {{age}}</p>
+                <p>nationality: {{nationality}}</p>
+            </div>
+            <div id="loc_lang">
+                <p>location: {{location}}</p>
+                <p>language:{{language}}</p>
+            </div>
+            
             <!-- <form method="get" action="/followbtn?email={{email}}">
             <input type="submit" action="/followbtn" value="follow"> 
             </form> -->
-            <button class="dropbtn" onclick="onClick('{{email}}')">Follow</button>
+            
             
 
 
             <!-- {% for videos in profile.database %} -->
             <!-- {% endfor %} -->
+            
         </div>
-        </center>
+            <svg height="10" width="100%">
+            <line x1="0" y1="0" x2="20000" y2="0" style="stroke:white; stroke-width:8"/>
+            </svg>
             {% for video in videos %}
             {% if video.email == email %}
             <div class="video_div">
+
                 <span>
                 <a href="/profileview/{{video.email}}" id="profile-links">{{video.title}}</a> - Posted by {{video.email}} 
                 </span>
