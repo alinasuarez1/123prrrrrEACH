@@ -318,6 +318,7 @@ font-family: roboto;
     color: white;
     font-size: 20;
     font-weight: bold;
+    height: auto;
 }
 
 #profile-links{
@@ -327,10 +328,12 @@ font-family: roboto;
 }
 
 
-
 #profilepic{
     width: 30%;
     border: 2px solid white;
+    position: relative;
+    float: left;
+    margin-right: 5%;
 }
 .video_div{
     position:relative;
@@ -342,6 +345,25 @@ font-family: roboto;
 }
 
 #profileviewname{
+    display: inline-block;
     font-size: 35;
     font-weight: bold;
+    position: relative;
+    width: 100%;
+    float: left;
+    padding-bottom: 2%;
+}
+#user_name{
+    display: inline-block;
+    padding-right: 5%;
+}
+#age_nat{
+    position: relative;
+    width: 30%;
+    float: left;
+}
+#loc_lang{
+    position: relative;
+    width: 30%;
+    float: left;
 }
