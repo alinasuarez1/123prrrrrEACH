@@ -348,6 +348,7 @@ font-family: roboto;
     display: inline-block;
     font-size: 35;
     font-weight: bold;
+<<<<<<< HEAD
     position: relative;
     width: 100%;
     float: left;
@@ -367,3 +368,13 @@ font-family: roboto;
     width: 30%;
     float: left;
 }
+
+#joinnowbtn{
+    text-decoration: none;
+}
+
+#joinnowbtn:hover{
+    background-color: rgba(185, 186, 187, 0.979);
+}
+
+

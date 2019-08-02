@@ -304,5 +304,5 @@ app = webapp2.WSGIApplication([         #Anything that isn't specified goes to t
     ('/feed', FeedHandler),
     ('/followbtn', FollowHandler),
     ('/deletor', DeleteHandler),
-    ('.*', MainHandler),
+    ('.*', MainPageHandler),
 ])
