@@ -207,15 +207,6 @@ class ProfileSaveHandler(blobstore_handlers.BlobstoreUploadHandler):
             self.redirect('/')
         else:
             error_text = ''
-            upload_files = self.get_uploads()
-            blob_info = upload_files[0]
-            content_type = blob_info.content_type
-            profilepic = blob_info.key()
-            print "Got a blob key. "
-            print profilepic
-
-            if content_type not in ['image/jpeg', 'image/png', 'image/gif', 'image/webp']:
-                error_text += 'Type should be image.\n'
             firstname = self.request.get('firstname')
             lastname = self.request.get('lastname')
             age = self.request.get('age')
@@ -225,19 +216,30 @@ class ProfileSaveHandler(blobstore_handlers.BlobstoreUploadHandler):
             nickname = self.request.get('nickname')
             language = self.request.get('language')
 
-            # if len(name) < 2:
-            #     error_text += 'name should be at least two characters. \n'
-            # if len(name) > 20:
-            #     error_text += 'name should be no more than 20 characters. \n'
-            # if len(name.split()) > 1:
-            #     error_text += 'name should not have whitespace. \n'
-            # if len(description) > 4000:
-            #     error_text += 'Description should be less than 4000 characters. \n'
+            upload_files = self.get_uploads()
+            blob_info = upload_files[0]
+            content_type = blob_info.content_type
+            profilepic = blob_info.key()
+            print "Got a blob key. "
+            print profilepic
 
-            # for word in description.split():
-            #     if len(word) > 50:
-            #         error_text += 'Description contains words that are too long.\n'
-            #         break
+            # if content_type not in ['image/jpeg', 'image/png', 'image/gif', 'image/webp']:
+            #     error_text += 'Type should be image.\n'
+            # if len(firstname) < 2:
+            #     error_text += 'first name should be at least two characters. \n'
+            # if len(lastname) < 2:
+            #     error_text += 'last name should be at least two characters. \n'
+            # if len(age) < 2:
+            #     error_text += 'age should be at least two characters. \n'
+            # if len(description) < 2:
+            #     error_text += 'description should be at least two characters. \n'
+            # if len(nationality) < 2:
+            #     error_text += 'nationality should be at least two characters. \n'
+            # if len(location) < 2:
+            #     error_text += 'location should be at least two characters. \n'
+            # if len(language) < 2:
+            #     error_text += 'language should be at least two characters. \n'
+            
             values = get_template_parameters()
             values['firstname'] = firstname
             values['lastname'] = lastname

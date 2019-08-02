@@ -4,13 +4,12 @@
     </head>
     <body>
         <br>
-        <h1>Feed</h1>
         {% for video in videos %}
             <div class="main_video_div">
                 
                 <div id="vid_iframe">
                 <iframe width="420" height="250"
-                    src="{{video.url}}">
+                    src="{{video.url}}" allowfullscreen="true">
                 </iframe> 
                 </div>
 

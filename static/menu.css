@@ -1,11 +1,16 @@
 body{
     background-color: white;
     background-size: cover;
-    color: rgb(176, 204, 228);
+    color: rgb(176, 204, 228,);
     height: 100%;
     overflow: auto;
     background-image: url("https://thumbs.gfycat.com/EverlastingTightIrishterrier-max-1mb.gif")
     }
+
+#profileviewbody{
+    background-color: rgba(0, 0, 0, 0.1); 
+    background-image: none;
+}
 
 #white{
     background-color: white;
@@ -231,7 +236,7 @@ body{
 
 /* Dropdown Button */
 .dropbtn {
-  background-color: rgb(88, 88, 88);
+  background-color: rgb(141, 141, 141);
   color: white;
   padding: 16px; 
   font-size: 16px;
@@ -248,6 +253,7 @@ body{
   z-index: 3;
   display: inline-block;
 }
+
 
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
@@ -318,6 +324,8 @@ font-family: roboto;
 
 #profile-view{
     color: white;
+    font-size: 20;
+    font-weight: bold;
 }
 
 #profile-links{
@@ -330,6 +338,7 @@ font-family: roboto;
 
 #profilepic{
     width: 30%;
+    border: 2px solid white;
 }
 .video_div{
     position:relative;
@@ -337,4 +346,10 @@ font-family: roboto;
     padding: 1.2%;
     word-break: break-all;
     width: 430;
+}
+
+
+#profileviewname{
+    font-size: 35;
+    font-weight: bold;
 }
