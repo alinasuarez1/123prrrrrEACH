@@ -168,11 +168,19 @@ body{
 }
 
 #feedFrame{
-    width: 90%;
+    width: 49%;
     height: 83%;
     position: absolute;
     top: 17%;
-    left: 5%;
+    left: 1%;
+    background-color:rgba(0, 0, 0, .6);
+}
+#feedFrame2{
+    width: 49%;
+    height: 83%;
+    position: absolute;
+    top: 17%;
+    left: 50%;
     background-color:rgba(0, 0, 0, .6);
 }
 

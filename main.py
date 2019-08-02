@@ -99,6 +99,23 @@ class FeedHandler(webapp2.RequestHandler):
 
         render_template(self, 'feed.html', values)
 
+class FeedFollowHandler(webapp2.RequestHandler):
+    def get(self):
+        profiles = socialdata.get_recent_followed_profiles(get_user_email())
+        profile_emails = set()
+        for profile in profiles:
+            profile_emails.add(profile.email)
+        videos = socialdata.get_videos(20)
+        for video in videos:
+            if video.email in profile_emails:
+                first_name = socialdata.get_user_profile(video.email).firstname
+                last_name = socialdata.get_user_profile(video.email).lastname
+                video.firstname = first_name
+                video.lastname = last_name
+        values = get_template_parameters()
+        values['videos'] = videos
+
+        render_template(self, 'feedfollowing.html', values)
 
 class ProfileViewHandler(webapp2.RequestHandler):
     def get(self, email):
@@ -300,6 +317,7 @@ app = webapp2.WSGIApplication([         #Anything that isn't specified goes to t
     ('/upload', UploadHandler),
     ('/profile', ProfileHandler),
     ('/feed', FeedHandler),
+    ('/feedfollow', FeedFollowHandler),
     ('/followbtn', FollowHandler),
     ('/deletor', DeleteHandler),
     ('.*', MainHandler),

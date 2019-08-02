@@ -64,3 +64,16 @@ def follow_user(emailfollower, emailfollowing):
         ufollowing.put()
     else:
         print("you can't follow yourself dummy")
+
+def get_recent_followed_profiles(email):
+    user_profile = get_user_profile(email)
+    followed_ids = set()
+    for followed in user_profile.following:
+        followed_ids.add(followed)
+    
+    profiles = get_recent_profiles()
+    result = []
+    for profile in profiles:
+        if profile.key.urlsafe() in followed_ids:
+            result.append(profile)
+    return result

@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="/static/homepage.css">
+    </head>
+    <body>
+        <br>
+        <h1>following</h1>
+        {% for video in videos %}
+            <div class="main_video_div">
+                
+                <div id="vid_iframe">
+                <iframe width="420" height="250"
+                    src="{{video.url}}">
+                </iframe> 
+                </div>
+
+                <div id="vid_info">
+                <h2>{{video.title}}</h2>
+                <a href="/profileview/{{video.email}}" id="profile-links">By user:{{video.firstname}} {{video.lastname}}</a>
+                <p id="vid_description">{{video.description}}</p>
+                </div>
+            </div>
+            <br>
+            {% endfor %}
+       
+    </body>
+</body>
