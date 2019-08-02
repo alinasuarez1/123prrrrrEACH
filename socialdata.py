@@ -70,7 +70,6 @@ def get_recent_followed_profiles(email):
     followed_ids = set()
     for followed in user_profile.following:
         followed_ids.add(followed)
-    
     profiles = get_recent_profiles()
     result = []
     for profile in profiles:

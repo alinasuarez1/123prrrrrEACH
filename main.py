@@ -103,17 +103,24 @@ class FeedFollowHandler(webapp2.RequestHandler):
     def get(self):
         profiles = socialdata.get_recent_followed_profiles(get_user_email())
         profile_emails = set()
+        filteredvids=[]
         for profile in profiles:
             profile_emails.add(profile.email)
         videos = socialdata.get_videos(20)
+        print('##################################')
+        print(profile_emails)
         for video in videos:
+            print(video.email)
+            print(video.email in profile_emails)
             if video.email in profile_emails:
                 first_name = socialdata.get_user_profile(video.email).firstname
                 last_name = socialdata.get_user_profile(video.email).lastname
                 video.firstname = first_name
                 video.lastname = last_name
+                filteredvids.append(video)
+        print('########################')
         values = get_template_parameters()
-        values['videos'] = videos
+        values['videos'] = filteredvids
 
         render_template(self, 'feedfollowing.html', values)
 
